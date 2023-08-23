@@ -1,6 +1,6 @@
 # Mvv-FakeStoreApp (MVVM with Clean Architecture)
 
-Sample GitHubRepositories app that follow android latest MVVM with Clean Architecture.
+Sample app that follow android latest MVVM with Clean Architecture.
 We Applying Caching layer to secure user network quota, and force refresh data .
 
 MVVM with 
