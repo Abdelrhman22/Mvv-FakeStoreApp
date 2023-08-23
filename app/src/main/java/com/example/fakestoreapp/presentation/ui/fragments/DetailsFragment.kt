@@ -20,6 +20,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(layoutInflater)
 
+        binding.product = DetailsFragmentArgs.fromBundle(requireArguments()).product
 
 
         return binding.root
