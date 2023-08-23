@@ -1,5 +1,6 @@
-package com.example.fakestoreapp
+package com.example.fakestoreapp.data.models
 
+import com.example.fakestoreapp.core.entities.ProductItem
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
@@ -14,10 +15,19 @@ data class ProductItemRemote(
     @SerializedName("image") var image: String? = null,
     @SerializedName("rating") var rating: Rating? = Rating()
 
-)
+) {
+    fun asEntity(): ProductItem {
+        return ProductItem(
+            id = id,
+            title = title,
+            price = price,
+            description = description,
+            category = category,
+            image = image,
+            rating = rating
+        )
+    }
 
-@Serializable
-data class Rating(
-    @SerializedName("rate") var rate: Double? = null,
-    @SerializedName("count") var count: Int? = null
-)
+}
+
+

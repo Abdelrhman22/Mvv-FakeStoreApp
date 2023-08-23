@@ -18,6 +18,21 @@ fun setImageFromURL(imageView: ImageView, imageURL: String?) {
     }
 }
 
+@BindingAdapter("intValue")
+fun setIntValue(textView: TextView, value: Int?) {
+    value?.let {
+        textView.text = value.toString()
+    }
+}
+
+@BindingAdapter("doubleValue")
+fun setDoubleValue(textView: TextView, value: Double?) {
+    value?.let {
+        textView.text = value.toString()
+    }
+}
+
+
 @BindingAdapter("visibleGone")
 fun bindViewsVisibility(view: View, isVisible: Boolean) {
     view.visibility = if (isVisible) View.VISIBLE else View.GONE

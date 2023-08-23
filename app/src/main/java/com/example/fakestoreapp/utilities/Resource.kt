@@ -2,7 +2,7 @@ package com.example.fakestoreapp.utilities
 
 data class Resource<out T>
 constructor(
-    val status: Status = Status.LOADING, val response: T? = null, val error: Throwable? = null
+    val status: Status, val response: T? = null, val error: Throwable? = null
 ) {
     companion object {
 
