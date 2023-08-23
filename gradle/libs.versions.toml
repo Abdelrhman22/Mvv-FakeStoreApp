@@ -1,0 +1,17 @@
+[versions]
+core-ktx-version = "1.8.0"
+androidLib = "7.1.2"
+targetSDK = "33"
+minimumSDK = "24"
+hilt-version ="2.44"
+
+
+[libraries]
+ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx-version" }
+hiltAndroid = { module = "com.google.dagger:hilt-android", version.ref = "hilt-version" }
+hiltCompiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt-version" }
+
+
+[plugins]
+androidLib = { id = "com.android.library", version.ref = "androidLib" }
+
