@@ -2,6 +2,7 @@ package com.example.fakestoreapp.presentation.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fakestoreapp.R
@@ -23,9 +24,10 @@ class ProductsAdapter(private val listener: OnItemClicked) :
         return products.size
     }
 
-    fun setList(list: List<ProductItem>){
-        this.products = list
-        notifyDataSetChanged()
+    fun setList(newList: List<ProductItem>) {
+        val diffResult = DiffUtil.calculateDiff(ItemDiffCallBack(products, newList))
+        this.products = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
 
