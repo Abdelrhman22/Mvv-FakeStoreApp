@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.fakestoreapp.core.entities.ProductItem
 import com.example.fakestoreapp.utilities.Constants
 
-// TODO try make exportSchema with false
-@Database(entities = [ProductItem::class], version = 1, exportSchema = true)
+
+@Database(entities = [ProductItem::class], version = 1, exportSchema = false)
+@TypeConverters(RatingConverter::class)
 abstract class ProductsDataBase : RoomDatabase() {
 
     abstract fun productsDao(): ProductsDao

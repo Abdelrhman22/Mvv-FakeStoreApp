@@ -16,7 +16,6 @@ class ProductItem (
     var description: String? = null,
     var category: String? = null,
     var image: String? = null,
-    @Embedded // to save object
     var rating: Rating? = Rating()
 
 ) : Serializable
