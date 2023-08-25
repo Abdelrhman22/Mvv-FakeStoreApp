@@ -59,6 +59,14 @@ fun setIntValue(textView: TextView, value: Int?) {
 @BindingAdapter("doubleValue")
 fun setDoubleValue(textView: TextView, value: Double?) {
     value?.let {
+        val context = textView.context
+        textView.text = String.format(context.getString(R.string.str_product_price, value.toString()))
+    }
+}
+
+@BindingAdapter("rate")
+fun setRate(textView: TextView, value: Double?) {
+    value?.let {
         textView.text = value.toString()
     }
 }

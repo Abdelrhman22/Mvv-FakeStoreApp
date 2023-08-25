@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="shimmer_placeholder">#dddddd</color>
-    <color name="primary_text">#212121</color>
+    <color name="primary_text">#000000</color>
     <color name="secondary_text">#757575</color>
     <color name="colorProgress">#045e5e</color>
     <color name="colorAccent">#323A3B</color>

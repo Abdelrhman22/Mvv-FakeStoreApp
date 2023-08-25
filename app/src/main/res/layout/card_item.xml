@@ -17,7 +17,7 @@
 
         android:id="@+id/cv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp">
@@ -25,14 +25,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_height="match_parent">
 
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_product"
                 android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:scaleType="centerCrop"
                 app:imageURL="@{productItem.image}"
@@ -40,10 +39,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:loader="@{lavLoader}"
-                style="@style/image_style"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize"
                 tools:src="@drawable/ic_launcher_background" />
-
+            <!-- style="@style/image_style" -->
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lav_loader"
@@ -65,6 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
                 android:text="@{productItem.title}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_product"
@@ -74,17 +73,44 @@
 
             <TextView
                 android:id="@+id/txt_product_price"
-                style="@style/primary_text_style"
+                style="@style/secondary_text_style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 app:doubleValue="@{productItem.price}"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_product"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/progressWheel"
                 app:layout_constraintStart_toEndOf="@+id/iv_product"
                 tools:text="Product Price" />
 
+
+            <TextView
+                android:id="@+id/txt_product_rate"
+                style="@style/secondary_text_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/progressWheel"
+                app:layout_constraintEnd_toEndOf="@+id/progressWheel"
+                app:layout_constraintStart_toStartOf="@+id/progressWheel"
+                app:layout_constraintTop_toTopOf="@+id/progressWheel"
+                app:rate="@{productItem.rating.rate}"
+                tools:text="4.7" />
+
+            <ProgressBar
+                android:id="@+id/progressWheel"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/ciruclar_progress_bar"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_product_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_product_price"
+                app:progressValue="@{productItem.rating.rateValue}"
+                tools:progress="70" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
