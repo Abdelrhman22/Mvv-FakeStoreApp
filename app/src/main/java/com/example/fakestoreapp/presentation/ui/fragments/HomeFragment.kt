@@ -36,9 +36,15 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
         navController = findNavController()
+
         initRecyclerView()
+
         initProductsObserver()
+
         binding.retry = productsViewModel.retry()
+
+        binding.shimmerLayout.startShimmer()
+
         return binding.root
     }
 
@@ -85,4 +91,13 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
         navController.navigate(action)
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.shimmerLayout.startShimmer()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.shimmerLayout.stopShimmer()
+    }
 }
