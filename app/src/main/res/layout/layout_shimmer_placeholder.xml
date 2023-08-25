@@ -9,7 +9,7 @@
 
         android:id="@+id/cv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp">
@@ -17,14 +17,13 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_height="match_parent">
 
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_product"
                 android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:background="@color/shimmer_placeholder"
                 android:scaleType="centerCrop"
@@ -38,9 +37,10 @@
                 android:id="@+id/txt_product_title"
                 style="@style/primary_text_style"
                 android:layout_width="0dp"
-                android:layout_height="35dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="15dp"
+                android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_background_for_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_product"
@@ -48,17 +48,55 @@
 
 
             <TextView
-                android:id="@+id/txt_product_price"
-                style="@style/primary_text_style"
-                android:layout_width="0dp"
+                android:id="@+id/txt_product_category"
+                style="@style/secondary_text_style"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_background_for_text"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_product"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/txt_product_price"
                 app:layout_constraintStart_toEndOf="@+id/iv_product" />
 
+
+            <TextView
+                android:id="@+id/txt_product_price"
+                style="@style/secondary_text_style"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/rounded_background_for_text"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+                app:layout_constraintEnd_toStartOf="@+id/progressWheel"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toEndOf="@+id/iv_product" />
+
+
+            <TextView
+                android:id="@+id/txt_product_rate"
+                style="@style/secondary_text_style"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/rounded_background_for_text"
+                app:layout_constraintBottom_toBottomOf="@+id/progressWheel"
+                app:layout_constraintEnd_toEndOf="@+id/progressWheel"
+                app:layout_constraintStart_toStartOf="@+id/progressWheel"
+                app:layout_constraintTop_toTopOf="@+id/progressWheel" />
+
+            <ProgressBar
+                android:id="@+id/progressWheel"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="10dp"
+                android:indeterminate="false"
+                android:progressDrawable="@drawable/ciruclar_progress_bar"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_product_price"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txt_product_price"
+                tools:progress="70" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
