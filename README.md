@@ -37,10 +37,8 @@ We Applying Caching layer to secure user network quota, and force refresh data .
 #### Details Screen , Case of Error or no Data Found.
  
 <div>
-  <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/aa07c15c-ae13-4dc3-9584-a74502308cb9.jpg" width="40%">
-  <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/34dee2f9-e054-4e62-a31d-fe82fbde2924.jpg" width="40%">
-</div>
-<div>
-    <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/79c3ab7a-b200-49c8-9731-82943f9c420f.jpg" width="40%">
-  <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/9a9a2a28-56e4-4a8f-9232-e06f3c5d09a8.jpg" width="40%">
+ 
+  <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/34dee2f9-e054-4e62-a31d-fe82fbde2924.jpg" width="30%">
+   <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/79c3ab7a-b200-49c8-9731-82943f9c420f.jpg" width="30%">
+  <img src="https://github.com/Abdelrhman22/Mvv-FakeStoreApp/assets/12870894/9a9a2a28-56e4-4a8f-9232-e06f3c5d09a8.jpg" width="30%">
 </div>
