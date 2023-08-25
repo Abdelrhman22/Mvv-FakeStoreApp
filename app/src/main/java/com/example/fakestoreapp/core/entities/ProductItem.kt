@@ -8,7 +8,7 @@ import com.example.fakestoreapp.utilities.Constants
 import java.io.Serializable
 
 @Entity(tableName = Constants.TABLE_NAME)
-class ProductItem (
+data class ProductItem (
     @PrimaryKey
     var id: Int? = null,
     var title: String? = null,

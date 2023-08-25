@@ -3,6 +3,7 @@ package com.example.fakestoreapp.presentation.ui.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fakestoreapp.R
@@ -10,9 +11,7 @@ import com.example.fakestoreapp.core.entities.ProductItem
 import com.example.fakestoreapp.databinding.CardItemBinding
 
 class ProductsAdapter(private val listener: OnItemClicked) :
-    RecyclerView.Adapter<ProductsAdapter.ViewHolder>() {
-
-    private var products: List<ProductItem> = emptyList()
+    ListAdapter<ProductItem, ProductsAdapter.ViewHolder>(DIFF) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,19 +19,9 @@ class ProductsAdapter(private val listener: OnItemClicked) :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return products.size
-    }
-
-    fun setList(newList: List<ProductItem>) {
-        val diffResult = DiffUtil.calculateDiff(ItemDiffCallBack(products, newList))
-        this.products = newList
-        diffResult.dispatchUpdatesTo(this)
-    }
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(products[position])
+        holder.bindItem(getItem(position))
     }
 
 
@@ -44,24 +33,28 @@ class ProductsAdapter(private val listener: OnItemClicked) :
         RecyclerView.ViewHolder(binding.root) {
 
 
-        fun bindItem(productItem: ProductItem) {
+        fun bindItem(item: ProductItem) {
             with(binding) {
                 root.setOnClickListener {
-                    listener.onItemClicked(products[adapterPosition])
+                    listener.onItemClicked(getItem(adapterPosition))
                 }
-                Glide.with(root)
-                    .load(productItem.image)
-                    .placeholder(R.drawable.ic_loading) // Optional: Placeholder image while loading
-                    .error(R.drawable.ic_error) // Optional: Error image if the URL is invalid
-                    .into(binding.ivProduct)
-
-                txtProductTitle.text = productItem.title
-                txtProductPrice.text = productItem.price?.toString()
-
+                productItem = item
             }
         }
-
     }
 
+    companion object {
+
+        val DIFF = object : DiffUtil.ItemCallback<ProductItem>() {
+            override fun areItemsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
+                oldItem.id == newItem.id
+
+            override fun areContentsTheSame(oldItem: ProductItem, newItem: ProductItem): Boolean =
+                oldItem == newItem
+
+        }
+
+
+    }
 
 }

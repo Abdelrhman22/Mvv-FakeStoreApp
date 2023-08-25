@@ -1,57 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cv_container"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="10dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
 
+        <variable
+            name="productItem"
+            type="com.example.fakestoreapp.core.entities.ProductItem" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/cv_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="#E0E0E0"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
 
 
-        <ImageView
-            android:id="@+id/iv_product"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginStart="5dp"
-            android:background="@drawable/circle_background"
-            android:clipToOutline="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/txt_product_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:text="Product Title"
-            app:layout_constraintStart_toEndOf="@+id/iv_product"
-            app:layout_constraintTop_toTopOf="@+id/iv_product" />
+            android:layout_margin="10dp">
 
 
-        <TextView
-            android:id="@+id/txt_product_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginBottom="15dp"
-            android:text="Product Price"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_product"
-            app:layout_constraintStart_toEndOf="@+id/iv_product" />
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_product"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
+                app:imageURL="@{productItem.image}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loader="@{lavLoader}"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                tools:src="@drawable/ic_launcher_background" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lav_loader"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+                app:layout_constraintEnd_toEndOf="@+id/iv_product"
+                app:layout_constraintStart_toStartOf="@+id/iv_product"
+                app:layout_constraintTop_toTopOf="@+id/iv_product"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/loading_indicator" />
+
+
+            <TextView
+                android:id="@+id/txt_product_title"
+                style="@style/primary_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:text="@{productItem.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_product"
+                app:layout_constraintTop_toTopOf="@+id/iv_product"
+                tools:text="Product Title" />
+
+
+            <TextView
+                android:id="@+id/txt_product_price"
+                style="@style/primary_text_style"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                app:doubleValue="@{productItem.price}"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/iv_product"
+                tools:text="Product Price" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

@@ -81,6 +81,11 @@ dependencies {
     implementation ("androidx.room:room-ktx:$room_version")
     kapt ("androidx.room:room-compiler:$room_version")
 
+    // facebook shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    // lottie
+    implementation 'com.airbnb.android:lottie:6.0.0'
 }
 // Allow references to generated code
 kapt {

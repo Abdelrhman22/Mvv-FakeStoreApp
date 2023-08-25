@@ -17,6 +17,8 @@ import com.example.fakestoreapp.databinding.FragmentHomeBinding
 import com.example.fakestoreapp.presentation.ui.adapters.ProductsAdapter
 import com.example.fakestoreapp.presentation.viewmodels.ProductsViewModel
 import com.example.fakestoreapp.utilities.Status
+import com.example.fakestoreapp.utilities.showSnackBar
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -56,16 +58,15 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
 
                     Status.SUCCESS -> {
                         resource.response?.let {
-                            adapter.setList(it)
+                            adapter.submitList(it)
                         }
                     }
 
                     Status.ERROR -> {
-                        Toast.makeText(
-                            context,
-                            resource.error?.message ?: "General Error message",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        showSnackBar(
+                            message = resource.error?.message ?: "General Error message",
+                            duration = Snackbar.LENGTH_LONG
+                        )
                     }
 
 
