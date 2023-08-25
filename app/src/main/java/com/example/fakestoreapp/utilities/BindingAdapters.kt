@@ -3,6 +3,7 @@ package com.example.fakestoreapp.utilities
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
@@ -67,6 +68,14 @@ fun setDoubleValue(textView: TextView, value: Double?) {
 fun bindViewsVisibility(view: View, isVisible: Boolean) {
     view.visibility = if (isVisible) View.VISIBLE else View.GONE
 }
+
+@BindingAdapter("progressValue")
+fun setProgressValue(progressBar: ProgressBar, value: Int?) {
+    value?.let {
+       progressBar.progress = it
+    }
+}
+
 
 @BindingAdapter("showIfSuccessAndListEmpty")
 fun <T> setState(view: View, resource: Resource<T>?) {
