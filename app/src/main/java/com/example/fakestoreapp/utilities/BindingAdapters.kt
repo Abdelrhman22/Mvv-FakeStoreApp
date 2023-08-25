@@ -93,3 +93,12 @@ fun <T> setState(view: View, resource: Resource<T>?) {
             if (resource.status == Status.SUCCESS && list.isNullOrEmpty()) View.VISIBLE else View.GONE
     }
 }
+@BindingAdapter("iconURL")
+fun setIconFromURL(imageView: ImageView, iconUrl: String? ) {
+    iconUrl?.let {
+        Glide.with(imageView.context)
+            .load(it)
+            .error(R.drawable.ic_error)
+            .into(imageView)
+    }
+}

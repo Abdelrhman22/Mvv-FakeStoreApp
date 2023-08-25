@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.fakestoreapp.R
 import com.example.fakestoreapp.databinding.FragmentDetailsBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,8 +21,15 @@ class DetailsFragment : Fragment() {
     ): View? {
         binding = FragmentDetailsBinding.inflate(layoutInflater)
 
-        binding.product = DetailsFragmentArgs.fromBundle(requireArguments()).product
+        val clickedProduct = DetailsFragmentArgs.fromBundle(requireArguments()).product
 
+        binding.product = clickedProduct
+
+        binding.tvToolbarTitle.text = getString(R.string.str_details_screen)
+
+        binding.ivDismiss.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
     }

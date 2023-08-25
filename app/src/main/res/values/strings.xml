@@ -94,4 +94,6 @@
     </string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="str_home">Home Screen</string>
+    <string name="str_details_screen">Details Screen</string>
 </resources>

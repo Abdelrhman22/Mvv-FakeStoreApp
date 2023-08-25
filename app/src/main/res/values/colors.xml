@@ -12,4 +12,5 @@
     <color name="secondary_text">#757575</color>
     <color name="colorProgress">#045e5e</color>
     <color name="colorAccent">#323A3B</color>
+    <color name="colorTransparentBackground">#D72D3535</color>
 </resources>
