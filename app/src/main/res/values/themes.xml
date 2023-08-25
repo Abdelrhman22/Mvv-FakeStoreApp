@@ -44,4 +44,19 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
+
+    <style name="buttons_style" parent="Widget.AppCompat.Button">
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:minHeight">60dp</item>
+        <item name="colorButtonNormal">@drawable/button_bg_blue</item>
+        <item name="android:background">@drawable/button_bg_blue</item>
+        <item name="android:height">50dp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
 </resources>
