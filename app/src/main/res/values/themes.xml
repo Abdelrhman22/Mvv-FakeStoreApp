@@ -31,4 +31,17 @@
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
 
+    <style name="avatar_profile_image_style">
+        <item name="android:elevation">8dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="strokeColor">@color/teal_200</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
 </resources>

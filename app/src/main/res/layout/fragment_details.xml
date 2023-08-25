@@ -20,8 +20,8 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_product"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="30dp"
             android:scaleType="centerCrop"
             tools:src="@drawable/ic_launcher_background"
@@ -30,7 +30,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loader="@{lavLoader}"
-            app:shapeAppearanceOverlay="@style/roundedImageView" />
+            style="@style/avatar_profile_image_style"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
 
         <com.airbnb.lottie.LottieAnimationView
