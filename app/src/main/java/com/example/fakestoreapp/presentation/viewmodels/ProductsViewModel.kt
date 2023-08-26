@@ -28,11 +28,11 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
     private fun getProducts(isForced: Boolean = false) {
         viewModelScope.launch {
             try {
-                _products.emit(Resource(status = Status.LOADING))
+                _products.emit(Resource.loading())
                 val products = productsUseCase.invoke(isForced)
-                _products.emit(Resource(status = Status.SUCCESS, response = products))
-            } catch (error: Throwable) {
-                _products.emit(Resource(status = Status.ERROR, error = error))
+                _products.emit(Resource.success(response = products))
+            } catch (throwable: Throwable) {
+                _products.emit(Resource.error(error = throwable))
             }
 
         }
