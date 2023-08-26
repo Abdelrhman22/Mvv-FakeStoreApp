@@ -75,6 +75,10 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
                         )
                     }
 
+                    Status.NO_INTERNET ->{
+
+                    }
+
 
                 }
             }

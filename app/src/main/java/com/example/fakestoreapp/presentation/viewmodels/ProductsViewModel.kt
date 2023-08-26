@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.fakestoreapp.core.entities.ProductItem
 import com.example.fakestoreapp.domain.usecases.ProductsUseCase
 import com.example.fakestoreapp.presentation.ui.interfaces.RetryCallBack
+import com.example.fakestoreapp.utilities.NetworkChecker
 import com.example.fakestoreapp.utilities.Resource
 import com.example.fakestoreapp.utilities.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductsViewModel @Inject constructor(private val productsUseCase: ProductsUseCase) :
+class ProductsViewModel @Inject constructor(
+    private val productsUseCase: ProductsUseCase,
+    private val networkChecker: NetworkChecker
+) :
     ViewModel() {
 
     private val _products = MutableStateFlow<Resource<List<ProductItem>>>(Resource.loading())
@@ -27,12 +31,16 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
 
     private fun getProducts(isForced: Boolean = false) {
         viewModelScope.launch {
-            try {
-                _products.emit(Resource.loading())
-                val products = productsUseCase.invoke(isForced)
-                _products.emit(Resource.success(response = products))
-            } catch (throwable: Throwable) {
-                _products.emit(Resource.error(error = throwable))
+            if (networkChecker.isConnectedToInternet()) {
+                try {
+                    _products.emit(Resource.loading())
+                    val products = productsUseCase.invoke(isForced)
+                    _products.emit(Resource.success(response = products))
+                } catch (throwable: Throwable) {
+                    _products.emit(Resource.error(error = throwable))
+                }
+            } else {
+                _products.emit(Resource.noInternet())
             }
 
         }

@@ -2,6 +2,7 @@
     <string name="app_name">Store App</string>
     <string name="no_data_found">No Data Found</string>
     <string name="try_again">Something went wrong Try Again</string>
+    <string name="no_internet">Check internet connection and Press again</string>
     <string name="str_product_price">Price is %1$s $</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

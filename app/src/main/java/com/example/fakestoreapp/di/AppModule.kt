@@ -13,6 +13,7 @@ import com.example.fakestoreapp.data.repository.ProductsRepositoryImp
 import com.example.fakestoreapp.domain.repository.ProductsRepository
 import com.example.fakestoreapp.domain.usecases.ProductsUseCase
 import com.example.fakestoreapp.utilities.Constants
+import com.example.fakestoreapp.utilities.NetworkChecker
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -75,5 +76,12 @@ object AppModule {
     @Singleton
     fun provideUserCase(productsRepository: ProductsRepository): ProductsUseCase =
         ProductsUseCaseImp(productsRepository)
+
+
+    // for network checker
+    @Provides
+    @Singleton
+    fun provideNetworkChecker(@ApplicationContext context: Context): NetworkChecker =
+        NetworkChecker(context)
 
 }

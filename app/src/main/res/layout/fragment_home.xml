@@ -113,6 +113,14 @@
             app:visibleGone="@{resource.status == Status.ERROR}" />
 
 
+        <include
+            layout="@layout/layout_no_internet"
+            android:visibility="gone"
+            app:retryAction="@{retry}"
+            app:visibleGone="@{resource.status == Status.NO_INTERNET}" />
+
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

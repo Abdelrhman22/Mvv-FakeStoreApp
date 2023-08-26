@@ -18,5 +18,8 @@ constructor(
             return Resource(status = Status.LOADING, response = null, error = null)
         }
 
+        fun <T> noInternet(): Resource<T> {
+            return Resource(status = Status.NO_INTERNET, response = null, error = null)
+        }
     }
 }
