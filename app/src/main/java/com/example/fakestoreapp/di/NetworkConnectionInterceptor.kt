@@ -18,7 +18,7 @@ class NetworkConnectionInterceptor(private val context: Context) : Interceptor {
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         if (!isConnected()) {
-            throw NetworkConnectivityException(R.string.str_network_no_internet_connection)
+            throw NetworkConnectivityException(context.getString(R.string.str_network_no_internet_connection))
         }
         return chain.proceed(chain.request())
     }

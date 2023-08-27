@@ -107,17 +107,17 @@
 
 
         <include
+            android:id="@+id/layout_api_error"
             layout="@layout/layout_api_error"
             android:visibility="gone"
-            app:retryAction="@{retry}"
-            app:visibleGone="@{resource.status == Status.ERROR}" />
+            app:retryAction="@{retry}" />
 
 
         <include
+            android:id="@+id/layout_no_internet"
             layout="@layout/layout_no_internet"
             android:visibility="gone"
-            app:retryAction="@{retry}"
-            app:visibleGone="@{resource.status == Status.NETWORK}" />
+            app:retryAction="@{retry}" />
 
 
 

@@ -7,7 +7,6 @@ import com.example.fakestoreapp.di.NetworkConnectivityException
 import com.example.fakestoreapp.domain.usecases.ProductsUseCase
 import com.example.fakestoreapp.presentation.ui.interfaces.RetryCallBack
 import com.example.fakestoreapp.utilities.Resource
-import com.example.fakestoreapp.utilities.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,8 +31,8 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
                 _products.emit(Resource.loading())
                 val products = productsUseCase.invoke(isForced)
                 _products.emit(Resource.success(response = products))
-            } catch (ex: NetworkConnectivityException) {
-                _products.emit(Resource(Status.NETWORK))
+            } catch (networkException: NetworkConnectivityException) {
+                _products.emit(Resource.error(error = networkException))
             } catch (ex: Exception) {
                 _products.emit(Resource.error(error = ex))
             }

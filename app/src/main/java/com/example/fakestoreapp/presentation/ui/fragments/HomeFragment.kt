@@ -11,9 +11,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.fakestoreapp.core.entities.ProductItem
 import com.example.fakestoreapp.databinding.FragmentHomeBinding
+import com.example.fakestoreapp.di.NetworkConnectivityException
 import com.example.fakestoreapp.presentation.ui.adapters.ProductsAdapter
 import com.example.fakestoreapp.presentation.viewmodels.ProductsViewModel
 import com.example.fakestoreapp.utilities.Status
+import com.example.fakestoreapp.utilities.show
 import com.example.fakestoreapp.utilities.showSnackBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,25 +57,36 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
                 binding.resource = resource
                 when (resource.status) {
                     Status.LOADING -> {
-
+                        binding.layoutApiError.clContainer.show(false)
+                        binding.layoutNoInternet.clContainer.show(false)
                     }
 
                     Status.SUCCESS -> {
+                        binding.layoutApiError.clContainer.show(false)
+                        binding.layoutNoInternet.clContainer.show(false)
                         resource.response?.let {
                             adapter.submitList(it)
                         }
                     }
 
                     Status.ERROR -> {
+                        var messageError: String = ""
+                        if (resource.error is NetworkConnectivityException) {
+                            messageError = resource.error.errorMessage
+                            binding.layoutNoInternet.clContainer.show()
+                            binding.layoutApiError.clContainer.show(false)
+                        } else {
+                            messageError = resource.error?.message ?: "General Error message"
+                            binding.layoutApiError.clContainer.show()
+                            binding.layoutNoInternet.clContainer.show(false)
+                        }
+
                         showSnackBar(
-                            message = resource.error?.message ?: "General Error message",
+                            message = messageError,
                             duration = Snackbar.LENGTH_LONG
                         )
                     }
 
-                    Status.NETWORK ->{
-
-                    }
 
 
                 }
