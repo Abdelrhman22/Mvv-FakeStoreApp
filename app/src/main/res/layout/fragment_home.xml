@@ -117,7 +117,7 @@
             layout="@layout/layout_no_internet"
             android:visibility="gone"
             app:retryAction="@{retry}"
-            app:visibleGone="@{resource.status == Status.NO_INTERNET}" />
+            app:visibleGone="@{resource.status == Status.NETWORK}" />
 
 
 

@@ -3,9 +3,9 @@ package com.example.fakestoreapp.presentation.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fakestoreapp.core.entities.ProductItem
+import com.example.fakestoreapp.di.NetworkConnectivityException
 import com.example.fakestoreapp.domain.usecases.ProductsUseCase
 import com.example.fakestoreapp.presentation.ui.interfaces.RetryCallBack
-import com.example.fakestoreapp.utilities.NetworkChecker
 import com.example.fakestoreapp.utilities.Resource
 import com.example.fakestoreapp.utilities.Status
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,10 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ProductsViewModel @Inject constructor(
-    private val productsUseCase: ProductsUseCase,
-    private val networkChecker: NetworkChecker
-) :
+class ProductsViewModel @Inject constructor(private val productsUseCase: ProductsUseCase) :
     ViewModel() {
 
     private val _products = MutableStateFlow<Resource<List<ProductItem>>>(Resource.loading())
@@ -31,18 +28,15 @@ class ProductsViewModel @Inject constructor(
 
     private fun getProducts(isForced: Boolean = false) {
         viewModelScope.launch {
-            if (networkChecker.isConnectedToInternet()) {
-                try {
-                    _products.emit(Resource.loading())
-                    val products = productsUseCase.invoke(isForced)
-                    _products.emit(Resource.success(response = products))
-                } catch (throwable: Throwable) {
-                    _products.emit(Resource.error(error = throwable))
-                }
-            } else {
-                _products.emit(Resource.noInternet())
+            try {
+                _products.emit(Resource.loading())
+                val products = productsUseCase.invoke(isForced)
+                _products.emit(Resource.success(response = products))
+            } catch (ex: NetworkConnectivityException) {
+                _products.emit(Resource(Status.NETWORK))
+            } catch (ex: Exception) {
+                _products.emit(Resource.error(error = ex))
             }
-
         }
     }
 

@@ -1,17 +1,14 @@
 package com.example.fakestoreapp.presentation.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.example.fakestoreapp.R
 import com.example.fakestoreapp.core.entities.ProductItem
 import com.example.fakestoreapp.databinding.FragmentHomeBinding
 import com.example.fakestoreapp.presentation.ui.adapters.ProductsAdapter
@@ -20,7 +17,6 @@ import com.example.fakestoreapp.utilities.Status
 import com.example.fakestoreapp.utilities.showSnackBar
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -75,7 +71,7 @@ class HomeFragment : Fragment(), ProductsAdapter.OnItemClicked {
                         )
                     }
 
-                    Status.NO_INTERNET ->{
+                    Status.NETWORK ->{
 
                     }
 
