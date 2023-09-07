@@ -10,6 +10,10 @@ import com.example.fakestoreapp.utilities.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,7 +28,7 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
     init {
         getProducts()
     }
-
+    /*
     private fun getProducts(isForced: Boolean = false) {
         viewModelScope.launch {
             try {
@@ -37,6 +41,14 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
                 _products.emit(Resource.error(error = ex))
             }
         }
+    }
+     */
+
+    private fun getProducts(isForced: Boolean = false) = viewModelScope.launch {
+        flowOf(productsUseCase.invoke(isForced))
+            .onStart { _products.emit(Resource.loading()) }
+            .catch { _products.emit(Resource.error(error = it)) }
+            .collect { _products.emit(Resource.success(response = it)) }
     }
 
     fun retry(): RetryCallBack {
