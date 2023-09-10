@@ -3,6 +3,7 @@ package com.example.fakestoreapp.data.local
 import androidx.room.TypeConverter
 import com.example.fakestoreapp.data.models.Rating
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class RatingConverter {
 
@@ -11,7 +12,8 @@ class RatingConverter {
         if (json.isNullOrEmpty()) {
             return null
         }
-        return Gson().fromJson(json, Rating::class.java)
+        val type = object : TypeToken<Rating>() {}
+        return Gson().fromJson(json, type)
     }
 
     @TypeConverter
