@@ -86,6 +86,10 @@ dependencies {
 
     // lottie
     implementation 'com.airbnb.android:lottie:6.0.0'
+
+    //timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
+
 }
 // Allow references to generated code
 kapt {
